@@ -5,39 +5,42 @@ public class MainEventi {
 	public static void main(String[] args) throws InterruptedException
 	{
 		String nome = "Nello";
-		//single thread
-		/*Eventi ev = new Eventi();
 		
-		
-		ev.crea(nome, 10);
-		ev.listaEventi();
-		
-		ev.aggiungi(nome, 20);
-		ev.listaEventi();
-		
-		ev.prenota(nome, 5);
-		ev.listaEventi();
-		
-		ev.chiudi(nome);
-		System.out.println("---");
-		ev.listaEventi();*/
 		
 		//CONCORRENTE vedi: Sincronizzazione
-		HashMap<String, Integer> eventi = new HashMap<String, Integer>();
 		
-		Eventi t1 = new Eventi();
-		Eventi t2 = new Eventi();
-		Eventi t3 = new Eventi();
+		/*Eventi t1 = new Eventi();
+		t1.crea(nome, 5);
+		t1.crea("pippo", 10);
 		
-		t1.start();
-		t2.start();
-		t3.start();
+		HashMap<String, Integer> eventi = t1.getEventi();
+		eventi.replace(nome, eventi.get(nome)+5);
 		
-		t1.crea(nome, 10, eventi);
-		t3.prenota(nome, 1, eventi);
-		t2.crea("Gem", 5, eventi);
-		t3.aggiungi(nome, 5, eventi);
-		t1.listaEventi(eventi);
+		t1.listaEventi();*/
+		
+		Eventi e = new Eventi();
+		Utente u1, u2;
+		Admin a1, a2;
+		
+		String s1 = "Nello";
+		String s2 = "Bro";
+		
+		u1 = new Utente(e);
+		u2 = new Utente(e);
+		
+		a1 = new Admin(e);
+		a2 = new Admin(e);
+		
+		a1.start();
+		u1.start();
+		
+		a1.run(s1, 5);
+		System.out.println();
+		a2.run(s2, 5);
+		System.out.println();
+		u1.run(s1, 1);
+		
+		
 	}
 
 }
