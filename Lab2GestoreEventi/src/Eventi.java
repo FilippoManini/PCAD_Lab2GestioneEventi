@@ -1,15 +1,15 @@
 import java.util.HashMap;
 
-public class Eventi 
+public class Eventi extends Thread
 {
-	private HashMap<String, Integer> eventi = new HashMap<String, Integer>();
 	
 	//costruttore
 	
 	//aggiungere un nuovo evento e i relativi posti
 	//disponibili solo se non esiste già un evento con lo stesso nome.
-	public boolean crea(String nome, int posti)
+	public synchronized boolean crea(String nome, int posti, HashMap<String, Integer> eventi)
 	{
+		//se esiste
 		if(eventi.get(nome) != null)
 			return false;
 		
@@ -18,19 +18,20 @@ public class Eventi
 	}
 	
 	//per aggiungere nuovi posti ad un determinato evento
-	public boolean aggiungi(String nome, int posti)
+	public synchronized boolean aggiungi(String nome, int posti, HashMap<String, Integer> eventi)
 	{
+		//se non esite 
 		if(eventi.get(nome) == null)
 			return false;
 		
 		//eventi.put(nome, posti);
-		eventi.replace(nome, posti);
+		eventi.replace(nome, eventi.get(nome)+posti);
 		return true;
 	}
 
 	//per prenotare posti per un dato evento,
 	//il metodo deve essere bloccante se non ci sono abbastanza posti
-	public boolean prenota(String nome, int posti)
+	public synchronized boolean prenota(String nome, int posti, HashMap<String, Integer> eventi)
 	{
 		if(eventi.get(nome)-posti < 0)
 			return false;
@@ -40,7 +41,7 @@ public class Eventi
 	}
 	
 	//cancella l’evento e sblocca tutti i clienti in attesa di post
-	public boolean chiudi(String nome)
+	public synchronized boolean chiudi(String nome, HashMap<String, Integer> eventi)
 	{
 		//se non esite 
 		if(eventi.get(nome) == null)
@@ -52,7 +53,7 @@ public class Eventi
 	
 	
 	//per visualizzare su console eventi e posti ancora disponibili
-	public void listaEventi()
+	public synchronized void listaEventi(HashMap<String, Integer> eventi)
 	{
 		for (String i : eventi.keySet()) {
 			System.out.println("nome: [" + i + "] posti: [" + eventi.get(i) + "]");
