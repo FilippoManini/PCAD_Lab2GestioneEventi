@@ -1,6 +1,6 @@
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.Before;
 import org.junit.jupiter.api.Test;
 
 class TestEventi 
@@ -29,6 +29,6 @@ class TestEventi
 	{
 		//a1.run(s1, 5);
 		//assertEquals(e.getEventi().get(s1), 10);
-		assertEquals(e, null);
+		//assertEquals(e, null);
 	}
 }

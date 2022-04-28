@@ -8,25 +8,25 @@ public class Admin implements Runnable
 	@Override
 	public void run() {
 		
-		for(int i = 0; i<3; ++i)
+		for(int i = 0; i<2; ++i)
 		{
 			System.out.println("Admin ["+i+"]: crea...");
 			e.crea("Evento_"+i, 10);
 			
-			e.listaEventi();
-			try {Thread.sleep(1000);}
+			//e.listaEventi();
+			try {Thread.sleep(3000);}
 			catch (InterruptedException e) {e.printStackTrace();}
 			
 			System.out.println("Admin ["+i+"]: aggiunge...");
 			e.aggiungi("Evento_"+i, 5);
 			
 			e.listaEventi();
-			try {Thread.sleep(1000);}
+			try {Thread.sleep(1500);}
 			catch (InterruptedException e) {e.printStackTrace();}
 			
 			e.chiudi("Evento_"+i);
 			System.out.println("Admin ["+i+"]: chiude...");
-			e.listaEventi();
+			//e.listaEventi();
 		}
 	}
 }

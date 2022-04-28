@@ -8,7 +8,7 @@ public class Eventi
 	
 	
 	//aggiungere un nuovo evento e i relativi posti
-	//disponibili solo se non esiste già un evento con lo stesso nome.
+	//disponibili solo se non esiste giï¿½ un evento con lo stesso nome.
 	public synchronized boolean crea(String nome, int posti)
 	{
 		//se esiste
@@ -44,7 +44,7 @@ public class Eventi
 		return true;
 	}
 	
-	//cancella l’evento e sblocca tutti i clienti in attesa di post
+	//cancella lï¿½evento e sblocca tutti i clienti in attesa di post
 	public synchronized  boolean chiudi(String nome)
 	{
 		//se non esite 

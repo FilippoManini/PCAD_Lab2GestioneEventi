@@ -7,15 +7,13 @@ public class Utente implements Runnable
 	
 	@Override
 	public void run() {
-		for(int i = 0; i<3; ++i)
+		for(int i = 0; i<2; ++i)
 		{
 			System.out.println("Utente["+i+"]: prenota Evento_"+i);
 			e.prenota("Evento_"+i,2);
-			try {Thread.sleep(5000);}
+			try {Thread.sleep(1000);}
 			catch (InterruptedException e) {e.printStackTrace();}
 			e.prenota("Evento_"+i,1);
 		}
 	}
-	
-	
 }
