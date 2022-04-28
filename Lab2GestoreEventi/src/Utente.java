@@ -1,28 +1,21 @@
 
-public class Utente extends Thread
+public class Utente implements Runnable
 {
 	private Eventi e;
-	private static int id = 0;
 
-	public Utente(Eventi e) {
-		this.e = e;
-		id++;
+	public Utente(Eventi e) {this.e = e;}
+	
+	@Override
+	public void run() {
+		for(int i = 0; i<3; ++i)
+		{
+			System.out.println("Utente["+i+"]: prenota Evento_"+i);
+			e.prenota("Evento_"+i,2);
+			try {Thread.sleep(5000);}
+			catch (InterruptedException e) {e.printStackTrace();}
+			e.prenota("Evento_"+i,1);
+		}
 	}
 	
-	public void run(String nome, int posti)
-	{
-		System.out.println("Utente: prenota...");
-		e.prenota(nome, posti);
-		/*try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}*/
-		//e.prenota(nome, posti);
-		
-		System.out.println("Utente: fine");
-		e.listaEventi();
-		return;
-	}
 	
 }
